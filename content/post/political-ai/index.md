@@ -66,10 +66,10 @@ Sounds minor? It absolutely is. Sure, it could happen that some unaware black ki
 
 "But hey, this is just ads! It's not like it actually affects anyone directly, it's not a big deal you SJW!" I hear you saying. But what if [an algorithm was actually biased against women when it comes to processing job applications](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G)? This is serious stuff. If you don't think it is, please, please convince yourself otherwise or just stop working with AI.
 
-![German scientist Wernher von Braun with rockets in the background](wernher.jpg)
+![German scientist Wernher von Braun with rockets in the background](wernher.jpg "Nazi-schmazi says Wernher von Braun")
 <sub><sup>Wernher von Braun. Don't be like him. AL.com/Youtube/NASA</sup></sub>
 
-Have you heard of a man called [Wernher von Braun](https://www.youtube.com/watch?v=QEJ9HrZq7Ro "Nazi-schmazi says Wernher von Braun")? Without delving too deep into historical details - he was a brilliant scientist, a pioneer in rocket technology in Germany and the United States. More specifically, Nazi Germany. He just wanted to build rockets, and anyways can we keep politics out of rockets? He's just gonna build them, make sure they go up, and who cares where they go down? London? Berlin? New York? That's politics. Let's keep rockets apolitical, please.
+Have you heard of a man called [Wernher von Braun](https://www.youtube.com/watch?v=QEJ9HrZq7Ro)? Without delving too deep into historical details - he was a brilliant scientist, a pioneer in rocket technology in Germany and the United States. More specifically, Nazi Germany. He just wanted to build rockets, and anyways can we keep politics out of rockets? He's just gonna build them, make sure they go up, and who cares where they go down? London? Berlin? New York? That's politics. Let's keep rockets apolitical, please.
 
 But he sure helped a lot of widows in London get their pensions.
 
