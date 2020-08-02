@@ -3,7 +3,7 @@
 
 title: "B.Sc. Thesis"
 summary: "High frequency airborne temperature measurements analyzed with AI techniques"
-authors: ["Ariel Kwiatkowski"]
+authors: []
 tags: []
 categories: []
 date: 2020-08-02T23:45:00+03:00
