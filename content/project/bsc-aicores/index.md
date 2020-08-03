@@ -1,7 +1,7 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "B.Sc. Thesis"
+title: "B.Sc. Thesis @ University of Warsaw"
 summary: "High frequency airborne temperature measurements analyzed with AI techniques"
 authors: []
 tags: []
