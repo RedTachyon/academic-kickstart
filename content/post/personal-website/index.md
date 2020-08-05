@@ -10,7 +10,7 @@ categories: []
 date: 2020-08-03T19:51:36+03:00
 lastmod: 2020-08-03T19:51:36+03:00
 featured: true
-draft: true
+draft: false
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -29,9 +29,11 @@ projects: []
 ---
 So, as you might have noticed, this is a fresh website. Setting it up was, at first, pretty frustrating, so if you're also thinking about setting up your own piece of internet to write posts like this, hopefully it'll help you avoid most of the problems.
 
-If you just want to get on to the technical stuff -- click [here](#setup), since I know how frustrating it is to read the author's entire biography before they get to the point. On the other hand, I want to give you an idea of what to expect in terms of difficulty and features included -- basically a rationale for what I did what I did, and perhaps a more interesting narrative to read through. 
+If you just want to get on to the technical stuff -- just go to the [Setup](#setup) part, since I know how frustrating it is to read the author's entire autobiography before they get to the point. On the other hand, I want to give you an idea of what to expect in terms of difficulty and features included -- basically a rationale for what I did what I did, and perhaps a more interesting narrative to read through. 
 
 # What are we making?
+
+![A screenshot of the main page of this website](inception.png "Sup dawg, I heard you like websites in your websites")
 
 As I'm about to begin a PhD, I looked back to my undergrad days -- ambitious, hopeful, looking up everyone at my university who works with similar stuff to get some research experience. And one thing I immensely appreciated was when researchers have personal websites detailing their research and invited visitors to contact them.
 
@@ -47,6 +49,8 @@ Spoiler alert: I managed all of this. So if it sounds like something you'd want,
 
 # How much did I know?
 
+![The second section of my homepage showcasing my skills](skills.png "Not a CSS in sight")
+
 To give you an idea of my technical skill, at the time of writing, I just finished a Master's degree in Autonomous Systems and am preparing to begin a PhD in Artificial Intelligence. I'm pretty comfortable with Python and to a smaller degree, other languages (of which the most relevant is probably JS, or preferably TS), and know enough web dev to write a simple server and a simple front-end... but that's about it in the web dev department.
 
 Most notably, I'm severly lacking in any kind of graphic design skills, which messes things up a little bit. After all, if you're making a portfolio website, you want it to be pretty, and I'd rather eat my thesis than do a major project with CSS.
@@ -54,6 +58,8 @@ Most notably, I'm severly lacking in any kind of graphic design skills, which me
 Fortunately, all that you need to know for this process is how to use the terminal, how to use Git (at least the very basics) and how to edit text documents. So in all likelihood, you're good to go. But even if Git sounds intimidating -- trust me, it's not, just make sure you have it installed (Mac/Linux) or install it (Windows), enter the commands in the article and you'll be good to go.
 
 # What have I tried? (and failed)
+
+![An image showing that the road to success can be twisted and with many dead ends](success.jpg "Sure, it's a tiny bit cringy, but I guess some motivation isn't always bad")
 
 My first thought was using GitHub Pages -- it's techy, it's hip, I know a bunch of people with personal pages there, why not? I had actually tried it out with Jekyll a year ago or so, but didn't really like it -- I found the customization to be somewhat complicated setting up the domain was more complicated than I would've liked it to be, and the website just looked... boring. 
 
