@@ -1,7 +1,7 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Creating a personal academic website: a short practical guide"
+title: "Creating a personal website: a short practical guide"
 subtitle: "Make a website without going crazy"
 summary: "I describe the process of making this exact website - to help avoid some frustrations I encountered along the way."
 authors: []
