@@ -29,7 +29,7 @@ projects: []
 ---
 So, as you might have noticed, this is a fresh website. Setting it up was, at first, pretty frustrating, so if you're also thinking about setting up your own piece of internet to write posts like this, hopefully it'll help you avoid most of the problems.
 
-If you just want to get on to the technical stuff -- just go to the [Setup](#setup) part, since I know how frustrating it is to read the author's entire autobiography before they get to the point. On the other hand, I want to give you an idea of what to expect in terms of difficulty and features included -- basically a rationale for what I did what I did, and perhaps a more interesting narrative to read through. 
+If you want to get on to the technical stuff -- just go to the [Setup](#setup) part, since I know how frustrating it is to read the author's entire autobiography before they get to the point. However, I'd like to give you an idea of what to expect in terms of difficulty and features included -- basically a rationale for what I did what I did, and perhaps a more interesting narrative to read through. 
 
 # What are we making?
 
@@ -37,7 +37,7 @@ If you just want to get on to the technical stuff -- just go to the [Setup](#set
 
 As I'm about to begin a PhD, I looked back to my undergrad days -- ambitious, hopeful, looking up everyone at my university who works with similar stuff to get some research experience. And one thing I immensely appreciated was when researchers have personal websites detailing their research and invited visitors to contact them.
 
-Another thing is that apparently, notoriety is useful in research -- and to this end, I could start a [twitter storm](https://twitter.com/ylecun/status/1274782757907030016) (as a side note: I'm team LeCun here), but a much more productive method would likely just be writing about my research (which I intend to do -- as soon as I start it).
+Another thing is that apparently, notoriety is useful in research -- and to this end, while I could probably just start a [twitter storm](https://twitter.com/ylecun/status/1274782757907030016) (as a side note: I'm team LeCun here), but a much more productive method would likely just be writing about my research (which I intend to do -- as soon as I start it).
 
 Lastly, every once in a while I like making small programming projects. Just some visualization, maybe a game or an animation on HTML Canvas, and it'd be cool to host it on the internet somehow, under my own domain without having to setup a whole backend for that, worrying about security and all that.
 
@@ -55,21 +55,21 @@ To give you an idea of my technical skill, at the time of writing, I just finish
 
 Most notably, I'm severly lacking in any kind of graphic design skills, which messes things up a little bit. After all, if you're making a portfolio website, you want it to be pretty, and I'd rather eat my thesis than do a major project with CSS.
 
-Fortunately, all that you need to know for this process is how to use the terminal, how to use Git (at least the very basics) and how to edit text documents. So in all likelihood, you're good to go. But even if Git sounds intimidating -- trust me, it's not, just make sure you have it installed (Mac/Linux) or install it (Windows), enter the commands in the article and you'll be good to go.
+Fortunately, all that you need to know for this process is how to use the terminal, how to use Git (at least the very basics) and how to edit text documents. So in all likelihood, you're good to go. But even if Git sounds intimidating -- trust me, it's not, just make sure you have it installed (Mac/Linux) or install it (Windows), enter the commands in the article and the linked tutorials, and you'll be good to go.
 
 # What have I tried? (and failed)
 
 ![An image showing that the road to success can be twisted and with many dead ends](success.jpg "Sure, it's a tiny bit cringy, but I guess some motivation isn't always bad")
 
-My first thought was using GitHub Pages -- it's techy, it's hip, I know a bunch of people with personal pages there, why not? I had actually tried it out with Jekyll a year ago or so, but didn't really like it -- I found the customization to be somewhat complicated setting up the domain was more complicated than I would've liked it to be, and the website just looked... boring. 
+My first thought was using GitHub Pages -- it's techy, it's hip, I know a bunch of people with personal pages there, why not? I had actually tried it out with Jekyll a year ago or so, but didn't really like it -- I found the customization to be somewhat complicated, setting up the domain was more complicated than I would've liked it to be, and the website just looked... boring. 
 
 Of course, with some more effort, you can also use other static site generators. There's a bunch of them, and the one that caught my eye was Hugo. Seemed to have decent reviews, with a bunch of nice themes, should still be hostable on GitHub Pages, right?
 
-Wrong. I mean, it's probably possible, it's probably also not that hard if you know what you're doing, but it just didn't happen in my case. I chose the Academic theme, which seems to be a whole beast in of itself. So from Hugo tutorials and quickstarts, I quickly moved on to Hugo Academic documentation, which made the local version of the website look really nice from the get-go, but for some reason, GitHub Pages just returned a build error, seemingly stemming from some unused file in the Academic theme. 
+Wrong. I mean, I'm sure it's possible, it's probably also not that hard if you know what you're doing, but it just didn't happen in my case. I chose the Academic theme, which seems to be a whole beast in of itself. So from Hugo tutorials and quickstarts, I quickly moved on to Hugo Academic documentation, which made the local version of the website look really nice from the get-go, but for some reason, GitHub Pages just returned a build error, seemingly stemming from some unused file in the Academic theme. 
 
 Then I went into the rabbit hole of trying to make my own fork of the Academic theme with the required change, to removing the submodule relation of a directory, all of that failing in the end. Sure, it worked on my localhost, but after pushing the changes to GitHub it was still broken.
 
-In all of this I was so dead-set on using GitHub Pages that I ignored any other options, even the ones handed to me on a silver platter. You see, Hugo Academic has a one-click quickstart for Netlify. I was skeptical -- it's a service I'm not particularly familiar with, and the default domain name you get for free is something like [ecstatic-volhard-8cf203.netlify.app](ecstatic-volhard-8cf203.netlify.app) -- yea, that's not going to work for my hip research blog.
+In all of this I was so dead-set on using GitHub Pages that I ignored any other options, even the ones handed to me on a silver platter. You see, Hugo Academic has a one-click quickstart for Netlify. I was skeptical -- it's a service I'm not particularly familiar with, and the default domain name you get for free is something like [ecstatic-volhard-8cf203.netlify.app](https://ecstatic-volhard-8cf203.netlify.app) -- yea, that's not going to work for my hip research blog.
 
 Thing is, when I set it up (for free), it worked like a dream. The page is instantly live under that ugly URL, so it might be worth giving it a shot? And what can I say -- it still worked great, I was able to tweak the website and have the new version live within a minute of pushing it to GitHub. 
 
