@@ -1,0 +1,13 @@
+#canvas {
+    border: 1px solid red;
+}   
+
+.container{
+    display: flex;
+}
+
+.flex-item{
+    flex-grow: 1;
+    font-weight: bold;
+    font-size: 50px;
+}
