@@ -38,7 +38,7 @@ education:
     year: 2018-2020
   - course: B.Sc. Physics (Individual Track)
     institution: University of Warsaw
-    year: 2015-2020
+    year: 2015-2018
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
