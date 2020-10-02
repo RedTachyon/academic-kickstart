@@ -73,4 +73,4 @@ user_groups:
 - Visitors
 ---
 
-I'm a PhD student at the Geometric & Visual Computing (GeoVIC) group at École Polytechnique in France. Working as part of the [CLIPE ITN](https://clipe-itn.eu) project funded by the [<span style="color:blue">**European Union**</span>](https://www.youtube.com/watch?v=Jo_-KoBiBG0), I'm looking into the applications of Multiagent Reinforcement Learning in the area of Crowd Simulation, following up on my previous Master's work about ad-hoc cooperation in MARL via Theory of Mind..
+I'm a PhD student at the Geometric & Visual Computing (GeoVIC) group at École Polytechnique in France. Working as part of the [CLIPE ITN](https://clipe-itn.eu) project funded by the [<span style="color:blue">**European Union**</span>](https://www.youtube.com/watch?v=Jo_-KoBiBG0), I'm looking into the applications of Multiagent Reinforcement Learning in the area of Crowd Simulation, following up on my previous Master's work about ad-hoc cooperation in MARL via Theory of Mind.
