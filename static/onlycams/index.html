@@ -1,0 +1,228 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>OnlyCams</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="img/icon.jpg"/>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">OnlyCams - ruin the fun of playing Among Us by abusing the cams</a>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid general">
+
+        <div class="row">
+
+            <div class="canvas-container col-sm-8">
+                <div>
+                <canvas id="cams-img" ></canvas>
+                </div>
+
+                <br>
+
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="1" value="1" class="slider" id="myRange">
+                    <label for="myRange">Step <span id="slider-value">1</span></label>
+                </div>
+
+                <div><img src="img/cams.png" alt="cams" height="300" width="500"></div>
+                <div>
+                <ol id="events-list">
+
+                </ol>
+                </div>
+
+            </div>
+
+            <div class="col-sm-4">
+
+                <h1>Input box</h1>
+                <input type="text" id="fast-input">
+                <label for="fast-input"></label>
+                <button id="fast-submit">Fast submit</button>
+
+                <h2>Room</h2>
+                <form id="room">
+                    <input type="radio" id="room-q" name="room" value="q" checked>
+                    <label for="room-q">Q</label>
+
+                    <input type="radio" id="room-w" name="room" value="w">
+                    <label for="room-w">W</label>
+                    <br/>
+                    <input type="radio" id="room-a" name="room" value="a">
+                    <label for="room-a">A</label>
+
+                    <input type="radio" id="room-s" name="room" value="s">
+                    <label for="room-s">S</label>
+                </form>
+
+                <h2>Direction FROM</h2>
+                <form id="from">
+                    <input type="radio" id="from-unk" name="from" value="?" checked>
+                    <label for="from-unk">?</label>
+
+                    <input type="radio" id="from-w" name="from" value="w">
+                    <label for="from-w">W</label>
+                    <br/>
+                    <input type="radio" id="from-a" name="from" value="a">
+                    <label for="from-a">A</label>
+
+                    <input type="radio" id="from-s" name="from" value="s">
+                    <label for="from-s">S</label>
+
+                    <input type="radio" id="from-d" name="from" value="d">
+                    <label for="from-d">D</label>
+
+                </form>
+
+                <h2>Direction TO (? is not supported)</h2>
+                <form id="to">
+                    <input type="radio" id="to-unk" name="to" value="?" disabled>
+                    <label for="to-unk">?</label>
+
+                    <input type="radio" id="to-w" name="to" value="w">
+                    <label for="to-w">W</label>
+                    <br/>
+                    <input type="radio" id="to-a" name="to" value="a">
+                    <label for="to-a">A</label>
+
+                    <input type="radio" id="to-s" name="to" value="s" checked>
+                    <label for="to-s">S</label>
+
+                    <input type="radio" id="to-d" name="to" value="d">
+                    <label for="to-d">D</label>
+
+                </form>
+
+                <h2>Color</h2>
+
+                <form id="color">
+                    <label>
+                        <input type="radio" name="color" value="red" checked>
+                        <img src="img/crewmates/red.png" alt="red" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="green">
+                        <img src="img/crewmates/green.png" alt="green" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="lime">
+                        <img src="img/crewmates/lime.png" alt="lime" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="black">
+                        <img src="img/crewmates/black.png" alt="black" height="50em">
+                    </label>
+
+                    <br>
+
+                    <label>
+                        <input type="radio" name="color" value="brown">
+                        <img src="img/crewmates/brown.png" alt="brown" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="white">
+                        <img src="img/crewmates/white.png" alt="white" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="blue">
+                        <img src="img/crewmates/blue.png" alt="blue" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="pink">
+                        <img src="img/crewmates/pink.png" alt="pink" height="50em">
+                    </label>
+
+                    <br>
+
+                    <label>
+                        <input type="radio" name="color" value="purple">
+                        <img src="img/crewmates/purple.png" alt="purple" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="yellow">
+                        <img src="img/crewmates/yellow.png" alt="yellow" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="cyan">
+                        <img src="img/crewmates/cyan.png" alt="cyan" height="50em">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="color" value="orange">
+                        <img src="img/crewmates/orange.png" alt="orange" height="50em">
+                    </label>
+
+                </form>
+
+                <br>
+                <button id="save">Save</button>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div> <!-- /container -->
+
+
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script type="module" src="js/vis.js"></script>
+        <script type="module" src="js/game.js"></script>
+        <script type="module" src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
