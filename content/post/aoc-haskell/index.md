@@ -67,7 +67,7 @@ The `inputs` symbol now holds a list of strings representing the numbers. Conver
 main :: IO ()
 main = do
     inputs <- lines <$> readFile "input.txt"
-    let nums = read inputs :: [Int]
+    let nums = map read inputs :: [Int]
     print nums
 ```
 
@@ -77,7 +77,7 @@ Time for the actual logic. Haskell happens to have this thing called list compre
 main :: IO ()
 main = do
     inputs <- lines <$> readFile "input.txt"
-    let nums = read inputs :: [Int]
+    let nums = map read inputs :: [Int]
     let result = head [a*b | a <- nums, b <- nums, a + b == 2020]
     print result
 ```
@@ -92,7 +92,7 @@ So let's add just a tiiiny bit of code...
 main :: IO ()
 main = do
     inputs <- lines <$> readFile "input.txt"
-    let nums = read inputs :: [Int]
+    let nums = map read inputs :: [Int]
     let result = head [a*b*c | a <- nums, b <- nums, c <- nums, a + b + c == 2020]
     print result
 ```
