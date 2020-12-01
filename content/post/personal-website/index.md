@@ -27,6 +27,13 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 ---
+
+# IMPORTANT DISCLAIMER
+
+Somewhere in the meanwhile, Hugo Academic seems to have undergone **major** changes, including a rebranding to Wowchemy, so this guide will likely be less than useful at this point. Some of the core ideas should still work, like registering a domain and hosting the website on netlify, but don't expect the details to be up-to-date. Sorry about that!
+
+# Back to usual programming...
+
 So, as you might have noticed, this is a fresh website. Setting it up was, at first, pretty frustrating, so if you're also thinking about setting up your own piece of internet to write posts like this, hopefully it'll help you avoid most of the problems.
 
 If you want to get on to the technical stuff -- just go to the [Setup](#setup) part, since I know how frustrating it is to read the author's entire autobiography before they get to the point. However, I'd like to give you an idea of what to expect in terms of difficulty and features included -- basically a rationale for what I did what I did, and perhaps a more interesting narrative to read through. 
