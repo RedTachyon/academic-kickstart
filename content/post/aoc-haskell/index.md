@@ -34,6 +34,123 @@ Note that I'm generally taking a pragmatic approach - I might not use epimorphic
 
 I'll be working via [repl.it](https://repl.it) to avoid the process of setting up Haskell/GHC/cargo/stack/nix/ghcup/... locally, so if there's any interest, I can share the link to the running code.
 
+# Day 3
+
+[link](https://adventofcode.com/2020/day/2)
+
+There's no way I'm going to do another problem by putting all the logic in a list comprehension, right? ...right?
+
+Wrong! Honestly, I wasn't really planning it, but guess this is my life now. So welcome to Advent of Comprehensions, day 3!
+
+This time we are given what is essentially a 2D binary array, implicitly infinitely repeating horizontally. Starting from `(0, 0)` we want to go 3 right, 1 down, repeat until we hit the bottom (which I'm sure will be somewhere in 2020), and count how many positive values (or "trees") we encounter along the way.
+
+The input parsing is simple enough - what we want ultimately is just a 2D array, so `[[Char]]` works great, and is obtained easily by applying `lines` to the raw input. It's also simple enough to get the number of elements in each row (assuming it's constant across rows, to preserve our sanity) by applying `(length . head)` to that array. (okay, it's not technically an array, but it's good enough for a mind model).
+
+And for the actual logic? Well, we can use the convenient Haskell way of creating integer lists - `[0,3..]` will give us an infinite list of all natural numbers divisible by 3, I'm sure you can see how that will be handy - after all we want to look at points (0, 0), (1, 3), (2, 6) etc.
+
+Then we just have to go through the input, taking the next element of that list for each line, put the column number through a modulo operation (so given that a row has 31 characters, column 33 would correspond to column 2, since we can't index column 33 directly), count how many such lines there are and... done! Really, this was much simpler than I expected looking at the inputs.
+
+```haskell
+main :: IO ()
+main = do
+    input <- lines <$> readFile "input.txt"
+    let m = (length . head) input
+
+    let result = sum [if '#' == line !! (k `mod` m) then 1 else 0 | (line, k) <- zip input [0,3..]]
+
+    print result
+```
+
+For the second part, we basically just need to change the slope of how far right and how far down we go. And I think it's time to make the code a bit modular - copy-pasting the same code 5 times and changing parameters just feels like a pain, and is terrible coding practice.
+
+So let's try to extract the core logic into a separate function. It feels pretty simple to change the "right" value - just change the hard-coded 3 to whatever else. But the last requested slope actually has a larger "down" increment, and this requires a bit more tweaking.
+
+I was hoping there'd be a built-in Haskell version, but alas, there is none. Fortunately, I found a nice little function for that on [Stack Overflow](https://stackoverflow.com/questions/2026912/how-to-get-every-nth-element-of-an-infinite-list-in-haskell), which I will shamelessly steal here:
+
+```haskell
+every :: Int -> [a] -> [a]
+every n xs = case drop (n-1) xs of
+              (y:ys) -> y : every n ys
+              [] -> []
+```
+
+Let's quickly check how it works. A simple test in GHCI gives the following result:
+
+```haskell
+>  take 5 $ every 2 [0..]
+=> [1,3,5,7,9]
+```
+
+Uh-oh, not exactly what we wanted. We want to include the first element, not exclude it. Starting from `-1` would work for this example, but not for the arbitrary list...
+
+But hey, we can just monkey-patch it by adding an extra, trivial element to the beginning of the array, right?
+
+```haskell
+>  take 5 $ every 2 (0:[0..])
+=> [0,2,4,6,8]
+```
+
+Yep, perfect! Let's just make sure it works for the base case...
+
+```haskell
+>  take 5 $ every 1 (0:[0..])
+=> [0,0,2,4,6]
+```
+
+...crap, that's not what we wanted. Going back to the Stack Overflow thread, there's another solution which actually makes an explicit distinction between a version starting at index 0 and at index n. The new function will be 
+
+```haskell
+every :: Int -> [a] -> [a]
+every _ [] = []
+every n as = head as : every n (drop n as)
+```
+
+We can do the same tests, this time dropping the ugly `0:` patch and yep, works like a dream!
+
+With that in our inventory, let's write a parametrized function that solves the previous task. There's nothing weird here, just replace the 3 with an argument, and the input lines with a small expression using the function defined above, and we get:
+
+```haskell
+solvePuzzle :: Int -> Int -> Int -> [[Char]] -> Int
+solvePuzzle r d m inp = sum [if '#' == line !! (k `mod` m) then 1 else 0 | 
+                             (line, k) <- zip (every d inp) [0,r..]] 
+```
+
+Now we just need to go through each test case, compute the value and get a product of all of them. There's really no need to use list comprehensions for that... but I'm gonna do it anyways. Just out of the principle.
+
+Each test case is described with two integers, so let's just use a tuple:
+
+```haskell
+testCases :: [(Int, Int)]
+testCases = [
+    (1, 1),
+    (3, 1),
+    (5, 1),
+    (7, 1),
+    (1, 2)
+    ]
+```
+
+And since we already have our input and row length in the IO context, the final resulting `main` function is really simple:
+
+```haskell
+main :: IO ()
+main = do
+    input <- lines <$> readFile "input.txt"
+    let n = length input
+    let m = (length . head) input
+
+    let result = product [solvePuzzle r d m input | (r, d) <- testCases]
+
+    print $ result
+```
+
+(Quick note - do I need the `$` in the last line there? Nope. But I generally like keeping it after all my `print` statements as a way of saying "take everything on the right and print it", so that I don't have to remember about that later if I make that statement more complex)
+
+Check the output and what do you know - it works!
+
+To be clear, I make no promises I'll stick to list comprehensions. For some parts of this day's problem, my first intuition was something else, for example mapping over the test cases with a partially applied function, but hey, this works too, and at least gives me some sort of a theme. And you know, "comprehension" shares some letters with "christmas", so that can't be a coincidence!
+
+
 # Day 2
 
 [link](https://adventofcode.com/2020/day/2)
