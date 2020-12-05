@@ -34,9 +34,153 @@ Note that I'm generally taking a pragmatic approach - I might not use epimorphic
 
 I'll be working via [repl.it](https://repl.it) to avoid the process of setting up Haskell/GHC/cargo/stack/nix/ghcup/... locally, so if there's any interest, I can share the link to the running code.
 
+# Day 4
+
+[link](https://adventofcode.com/2020/day/4)
+
+Did I ever mention how much I like working with strings and parsing stuff? No, I haven't. Because I absolutely hate it. I never bothered to properly learn any parsing libraries, and this day is literally about input validation... But what the hell, let's try.
+
+We want to read a bunch of strings separated by an empty line, but possibly containing a newline somewhere in the middle... Yea, good ol' `lines` will fail. So through some thinking I found the following procedure:
+
+1. Split the input into lines - this will produce an empty string in the space between distinct passports
+2. Turn the empty strings into newlines, append a space to all non-empty strings. `join` everything into a single string, and break it again on each newline with `lines`. Now we have a list of strings like "abc:def qwe:rty"
+3. Split each of those strings with `words` to get individual passport entries.
+4. Break each of the passport entries with a doubly-nested `map`, into parts before and after `':'`. Take only the first part.
+
+Phew, now we have a `[[String]]` where each entry is a passport, and each entry in a passport is the name of a field. The function that produces this is as follows:
+
+```haskell
+parseInput :: String -> [[String]]
+parseInput s = let 
+    lined = lines s
+    separated = lines $ join [if null line then "\n" else line ++ " " 
+                                    | line <- lined]
+    passports = map words separated
+    field = map (map $ fst . break (==':')) passports
+    in field
+```
+
+I *could* use more list comprehensions... I mean, each maps can be replaced with it but this time I will resist the temptation. I'll use some later.
+
+Now, we're given a set of required passport fields, so we just need to check that each of them is an element of a passport to consider that passport valid. Then just count up the number of valid passports - classic AoC question. 
+
+In other words, for every passport, go through the predefined list of fields and check that it is, in fact, an element in the passport. If they all come up as `True`, we mark the passport as valid. Then do it for each passport.
+
+...I'm gonna do it. I'll use a double list comprehension. Who's gonna stop me?
+
+```haskell
+main :: IO ()
+main = do
+    input <- parseInput <$> readFile "input.txt"
+    let valids = [and [e `elem` passport | e <- fields] | passport <- input]
+    let result = sum [if x then 1 else 0 | x <- valids]
+
+    print $ result
+```
+
+Boom, done. Wasn't *that* bad.
+
+So what do they want now? Ah, now I need to actually look at the values. That's not that bad - I just need a simple tweak to the parsing function to read the values as well. A `Map` seems like a suitable structure, so let's just `import Data.Map (fromList, Map)` at the beginning, and change the parsing function to:
+
+```haskell
+parseInput :: String -> [Map String String]
+parseInput s = let 
+    lined = lines s
+    separated = lines $ join [if null line then "\n" else line ++ " " 
+                                    | line <- lined]
+    passports = map words separated
+    field = map (fromList . (map $ break (==':'))) passports
+    in field
+```
+
+*about an hour later*
+
+Yea, I hate this. But in the end, I created a monstrosity that checks each of the conditions and sums it up. There isn't much interesting going on here, so I'll just dump all the code on you and go to sleep. Hope it helps!
+
+```haskell
+import Control.Monad (join)
+import Data.Map (fromList, Map, lookup)
+import Text.Read (readMaybe)
+import Data.Char (isAlpha, isDigit)
+
+import Prelude hiding (lookup)
+
+parseInput :: String -> [Map String String]
+parseInput s = let 
+    lined = lines s
+    separated = lines $ join [if null line then "\n" else line ++ " " 
+                                    | line <- lined]
+    passports = map words separated
+    field = map (fromList . (map $ break (==':'))) passports
+    in field
+
+
+dateValid :: Int -> Int -> String -> Bool
+dateValid l h s = let s' = (readMaybe s :: Maybe Int) in 
+                    case s' of
+                        Nothing -> False
+                        (Just x) -> x >= l && x <= h
+
+heightValid :: String -> Bool
+heightValid s = if (unit == "cm") then num >= 150 && num <= 193 
+                    else if (unit == "in") then num >= 59 && num <= 76
+                    else False
+    where (num', unit) = span isDigit s
+          num = (read num' :: Int)
+
+hairValid :: String -> Bool
+hairValid s = hash && len && chars
+    where hash = head s == '#'
+          color = tail s
+          len = length color == 6
+          chars = and [c `elem` "1234567890abcdef" | c <- color]
+
+eyeValid :: String -> Bool
+eyeValid s = s `elem` ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
+
+idValid :: String -> Bool
+idValid s = length s == 9 && all isDigit s
+
+validateInput :: String -> Maybe String -> Bool
+validateInput _ Nothing = False
+validateInput k (Just v) = case k of
+    "byr" -> dateValid 1920 2002 v
+    "iyr" -> dateValid 2010 2020 v
+    "eyr" -> dateValid 2020 2030 v
+    "hgt" -> heightValid v
+    "hcl" -> hairValid v
+    "ecl" -> eyeValid v
+    "pid" -> idValid v
+    "cid" -> True
+    _ -> False
+
+fields :: [String]
+fields = [
+    "byr",
+    "iyr",
+    "eyr",
+    "hgt",
+    "hcl",
+    "ecl",
+    "pid"
+    ]
+
+
+main :: IO ()
+main = do
+    input <- parseInput <$> readFile "input.txt"
+
+    let valids = [and [validateInput e (tail <$> e `lookup` passport) | e <- fields] | passport <- input]
+    let result = sum [if x then 1 else 0 | x <- valids]
+
+    print $ result
+```
+
+I hate parsing. Is my hatred stemming from my lack of knowledge? Absolutely. But that seems to be the way to go, looking at the current state of humanity.
+
 # Day 3
 
-[link](https://adventofcode.com/2020/day/2)
+[link](https://adventofcode.com/2020/day/3)
 
 There's no way I'm going to do another problem by putting all the logic in a list comprehension, right? ...right?
 
