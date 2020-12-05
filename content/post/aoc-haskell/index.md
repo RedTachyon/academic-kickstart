@@ -34,6 +34,57 @@ Note that I'm generally taking a pragmatic approach - I might not use epimorphic
 
 I'll be working via [repl.it](https://repl.it) to avoid the process of setting up Haskell/GHC/cargo/stack/nix/ghcup/... locally, so if there's any interest, I can share the link to the running code.
 
+
+# Day 5
+
+[link](https://adventofcode.com/2020/day/5)
+
+Hey, no weird parsing this time! All we need to do is read some slightly-concealed binary strings (which I guess is a form of parsing, but shh), convert them into `Int`s and do some simple logic on them. I won't go insane today!
+
+From the structure of the input, we know that the characters `'B'` and `'R'` correspond to binary `1`, and characters `'F'` and `'L'` - to `0`. There's a bunch of ways to convert a binary string to an integer, but I decided to use Haskell's infinite lists and... you guessed it - a list comprehension! If we reverse the input string and zip it with an infinite list `[0, 1, 2, 4, 8, ...]`, we can just sum the entries corresponding to `1` in the input and voilà, we're done. For simplicity, I'll actually zip it with `[0..]` and turn it into an exponent in the expression itself - but tomato tomato.
+
+```haskell
+readBinary :: String -> Int
+readBinary s = sum [ if c `elem` "BR" then 2^i else 0 | (c, i) <- zip (reverse s) [0..]]
+```
+
+Let's have another look at the structure of the input. Each line is an encoded seat ID, and to get the ID we need to:
+
+1. Split it into the row number (from the first 5 characters), and the column number (from the last 3 characters)
+2. Compute the ID by taking `8 * row + column`
+
+But... hold on a second. This is exactly the same as if we just parsed the entire string as-is, ignoring the whole column/row thing. Think about it this way, in base 10: is there a difference between saying 1043 and 100 * 10 + 43? Nope! So let's scratch the splitting part and just read the entire string - luckily, our `readBinary` function deals with it perfectly!
+
+With this insight... we're pretty much done. We just need to call `readBinary` on each line, find the maximum, boom.
+
+```haskell
+main :: IO ()
+main = do
+    input <- lines <$> readFile "input.txt"
+    let ids = map readBinary input
+    print $ maximum ids
+```
+
+Now, on to part to - this time we want to find our own number, which will be missing from the input list. But, to make things more complicated - it might be the case that the list of IDs is missing some values at the beginning and at the end. So first, let's just go through all IDs which take values in range `[0..8*128]` until we hit the first one that's actually present in our input.
+
+Then we just need to drop all the value that *are* present in our input, take the first one that's not and... Done. Simple as that.
+
+```haskell
+main :: IO ()
+main = do
+    input <- lines <$> readFile "input.txt"
+    let ids = map readBinary input
+
+    let midIds = dropWhile (not . (`elem` ids)) [0..8*128]
+
+    let myId = (head $ dropWhile (`elem` ids) midIds)
+
+    print $ myId
+```
+
+I must say, this was much more relaxing. And I got to use a list comprehension!
+
+
 # Day 4
 
 [link](https://adventofcode.com/2020/day/4)
