@@ -101,6 +101,7 @@ main = do
     print $ sum sizes
 ```
 
+Yay, done!
 
 
 # Day 5
