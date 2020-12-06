@@ -35,6 +35,74 @@ Note that I'm generally taking a pragmatic approach - I might not use epimorphic
 I'll be working via [repl.it](https://repl.it) to avoid the process of setting up Haskell/GHC/cargo/stack/nix/ghcup/... locally, so if there's any interest, I can share the link to the running code.
 
 
+# Day 6
+
+[link](https://adventofcode.com/2020/day/6)
+
+Is this another day where it's mostly just parsing? Sure is! Fortunately, now I can shamelessly reuse my code snippet that deals with the multiline inputs separated by empty lines, so there's that at least. So let's do that:
+
+```haskell
+import Control.Monad (join) 
+
+parseInput :: String -> [String]
+parseInput s = let 
+    lined = lines s
+    separated = lines $ join [if null line then "\n" else line ++ " " 
+                                    | line <- lined]
+    in separated
+```
+
+With this, I'll get a list of group answers, where each group answer is space-separated individual answers. Much easier to work with!
+
+Now, let's think about the logic of the problem. For each group separately, we want to check which letters are present in at least one of the individual's answers. This seems like a perfect use case for `Set`s - we don't care about order, or how many times something appears, just whether it does.
+
+Let's get some imports going for that:
+
+```haskell
+import Data.Set (Set, fromList, delete, toList, size, intersection)
+```
+
+If you're not familiar with haskell `Set`s, they're basically the same thing as their mathematical equivalents, which I'm assuming you know from high school.
+
+Note: Since care about a letter appearing in *any* individual answer, we can just treat all of them as part of one big answer. In other words, the representation that we have right now, of a space-separated string, is perfect.
+
+Anyways, here's the battle plan:
+
+1. Convert each string (`[Char]`) into a `Set`.
+2. Remove the space from the resulting sets.
+3. Compute the sizes of those sets
+4. Sum up the sizes
+
+Points 1-3 can be done with... you guessed it, a list comprehension! What remains is a simple sum, so without further ado, here's the `main`:
+
+```haskell
+main :: IO ()
+main = do
+    input <- parseInput <$> readFile "input.txt"
+    let sizes = [(size . (delete ' ') . fromList) line | line <- input]
+
+    print $ sum sizes
+```
+
+That wasn't so bad!
+
+But wait. Now we need to change it so that rather than finding letters present in *any* individual input, we find those present in all inputs. 
+
+Nothing difficult! Starting from the same representation as earlier, we need to split each group string into `words`, turn each of them into a set, take the intersection, and... the rest is the same. Here's the exact code:
+
+```haskell
+main :: IO ()
+main = do
+    input <- parseInput <$> readFile "input.txt"
+
+    let sizes = [(size .(foldl1 intersection) . (map fromList) . words) line |
+                     line <- input]
+
+    print $ sum sizes
+```
+
+
+
 # Day 5
 
 [link](https://adventofcode.com/2020/day/5)
@@ -101,6 +169,8 @@ We want to read a bunch of strings separated by an empty line, but possibly cont
 Phew, now we have a `[[String]]` where each entry is a passport, and each entry in a passport is the name of a field. The function that produces this is as follows:
 
 ```haskell
+import Control.Monad (join)
+
 parseInput :: String -> [[String]]
 parseInput s = let 
     lined = lines s
